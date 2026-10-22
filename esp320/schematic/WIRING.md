@@ -323,13 +323,13 @@ that address out of the per-channel scan.
 
 ## 8. Flash and open the monitor
 
-From the workspace root (`/Users/rifusaki/localRepos/uni`):
+From the repository root:
 
 ```bash
-./invexp/esp320/scripts/flash.sh --flash
+./esp320/scripts/flash.sh --flash
 ```
 
-Or from `invexp/esp320`:
+Or from `esp320`:
 
 ```bash
 ./scripts/flash.sh --flash            # compile + upload + monitor

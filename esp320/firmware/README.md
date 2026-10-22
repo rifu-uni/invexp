@@ -85,17 +85,17 @@ Install the ESP32 core once:
 arduino-cli core install esp32:esp32
 ```
 
-From the workspace root (`/Users/rifusaki/localRepos/uni`):
+From the repository root:
 
 ```bash
-./invexp/esp320/scripts/flash.sh                 # monitor only; does not touch flash
-./invexp/esp320/scripts/flash.sh --flash         # compile, upload, then monitor
-./invexp/esp320/scripts/flash.sh --flash --no-monitor
-./invexp/esp320/scripts/flash.sh --flash --port /dev/cu.usbmodem5CBC3855071
-./invexp/esp320/scripts/monitor.sh               # monitor at 115200, Ctrl-C exits
+./esp320/scripts/flash.sh                 # monitor only; does not touch flash
+./esp320/scripts/flash.sh --flash         # compile, upload, then monitor
+./esp320/scripts/flash.sh --flash --no-monitor
+./esp320/scripts/flash.sh --flash --port /dev/cu.usbmodem5CBC3855071
+./esp320/scripts/monitor.sh               # monitor at 115200, Ctrl-C exits
 ```
 
-Or from `invexp/esp320`:
+Or from `esp320`:
 
 ```bash
 ./scripts/flash.sh --flash
@@ -117,11 +117,11 @@ Manual commands, if the helper scripts are not wanted:
 ```bash
 arduino-cli compile --fqbn esp32:esp32:esp32s3 \
   --board-options FlashSize=16M,PSRAM=opi,PartitionScheme=app3M_fat9M_16MB \
-  --warnings all invexp/esp320/firmware/esp32_bmi160_bringup
+  --warnings all esp320/firmware/esp32_bmi160_bringup
 
 arduino-cli upload --fqbn esp32:esp32:esp32s3 \
   --board-options FlashSize=16M,PSRAM=opi,PartitionScheme=app3M_fat9M_16MB \
-  --port /dev/cu.usbmodem5CBC3855071 invexp/esp320/firmware/esp32_bmi160_bringup
+  --port /dev/cu.usbmodem5CBC3855071 esp320/firmware/esp32_bmi160_bringup
 ```
 
 ## Serial commands

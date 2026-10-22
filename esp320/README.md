@@ -39,10 +39,10 @@ One-time core install:
 arduino-cli core install esp32:esp32
 ```
 
-Then, from the workspace root:
+Then, from the repository root:
 
 ```bash
-./invexp/esp320/scripts/flash.sh --flash
+./esp320/scripts/flash.sh --flash
 ```
 
 `--flash` compiles and uploads, then opens the monitor. Without it the script
@@ -76,8 +76,8 @@ Use `--no-cdc` to keep UART0 on native USB.
 
 ## Regenerating the drawings
 
-Dependencies are managed by pixi at the workspace root. From
-`/Users/rifusaki/localRepos/uni`:
+Dependencies are managed by pixi at the repository root. From the repository
+root:
 
 ```bash
 pixi install

@@ -61,41 +61,41 @@ Run from the repository root:
 ```bash
 pixi run -e pose pose probe "$INVEXP_DATA_DIR/walkTest/001.MOV"
 pixi run -e pose pose run "$INVEXP_DATA_DIR/walkTest/001.MOV" \
-  --video-id 001 --output-dir invexp/walkTest/pose
-pixi run -e pose pose batch --output-dir invexp/walkTest/pose
+  --video-id 001 --output-dir walkTest/pose
+pixi run -e pose pose batch --output-dir walkTest/pose
 pixi run -e pose pose-test
 pixi run -e pose pose-overlays
 ```
 
-Models are downloaded on first use to `invexp/pose/models/` and verified against
+Models are downloaded on first use to `pose/models/` and verified against
 pinned SHA256 hashes. They are gitignored.
 
 Outputs:
 
 ```text
 $INVEXP_DATA_DIR/derived/pose/<id>_landmarks.csv.gz   # large, outside Git
-invexp/walkTest/pose/<id>_kinematics.csv.gz          # angles + pixel coordinates
-invexp/walkTest/pose/<id>_events.csv                 # contacts, toe-off, cadence
-invexp/walkTest/pose/<id>_run.json                   # QA metadata
-invexp/walkTest/pose/<id>_report.md                  # human summary
-invexp/walkTest/pose/<id>_overlay.mp4                # optional visual QA
-invexp/walkTest/pose/events_all.csv                  # batch concatenation
-invexp/walkTest/pose/summary.csv                     # batch QA table
+walkTest/pose/<id>_kinematics.csv.gz          # angles + pixel coordinates
+walkTest/pose/<id>_events.csv                 # contacts, toe-off, cadence
+walkTest/pose/<id>_run.json                   # QA metadata
+walkTest/pose/<id>_report.md                  # human summary
+walkTest/pose/<id>_overlay.mp4                # optional visual QA
+walkTest/pose/events_all.csv                  # batch concatenation
+walkTest/pose/summary.csv                     # batch QA table
 ```
 
 Visual QA overlays:
 
 ```bash
-# Re-render every run in invexp/walkTest/pose (force overwrite).
+# Re-render every run in walkTest/pose (force overwrite).
 pixi run -e pose pose-overlays
 
 # One clip. Uses the run metadata and landmark table from the output dir.
 pixi run -e pose pose overlay \
-  --video-id 001 --output-dir invexp/walkTest/pose
+  --video-id 001 --output-dir walkTest/pose
 
 # Lower-level batch command; skips existing files unless --force is added.
 pixi run -e pose pose overlay-batch \
-  --output-dir invexp/walkTest/pose
+  --output-dir walkTest/pose
 ```
 
 The default export is the longest continuous pose detections, plus one second
@@ -109,24 +109,24 @@ Validation against the existing Tracker annotation:
 
 ```bash
 pixi run -e pose pose validate \
-  --kinematics invexp/walkTest/pose/001_kinematics.csv.gz \
-  --events invexp/walkTest/pose/001_events.csv \
-  --trk invexp/walkTest/001_120fps_ffv1.trk \
-  --manual-csv invexp/walkTest/normalized/001_120fps_ffv1.csv \
-  --side left --out invexp/walkTest/pose/001_validation.json
+  --kinematics walkTest/pose/001_kinematics.csv.gz \
+  --events walkTest/pose/001_events.csv \
+  --trk walkTest/001_120fps_ffv1.trk \
+  --manual-csv walkTest/normalized/001_120fps_ffv1.csv \
+  --side left --out walkTest/pose/001_validation.json
 ```
 
 The 001 run matches 3/4 manual contacts within 150 ms (bias +67 ms, SD 5 ms).
 
 The manual annotation is compared point by point in
-`invexp/walkTest/pose/001_manual_vs_pose.ipynb`. Manual mass B is the ankle, so
+`walkTest/pose/001_manual_vs_pose.ipynb`. Manual mass B is the ankle, so
 the matching pose landmark is `left_ankle` (centered RMSE ~8 px resultant), not
 the heel/foot-index midpoint (~29 px). The sacral proxy is the hip midpoint
 (centered RMSE ~10 px); its raw offset is marker placement, not model noise.
 
 ```bash
 pixi run -e default jupyter nbconvert --to notebook --execute --inplace \
-  invexp/walkTest/pose/001_manual_vs_pose.ipynb
+  walkTest/pose/001_manual_vs_pose.ipynb
 ```
 
 `003` is oblique: use it for event robustness, not sagittal angles.

@@ -1,0 +1,19 @@
+# pixi environments
+.pixi
+
+# macOS
+**/.DS_Store
+
+# Heavy local media (stored outside the repo in INVEXP_DATA_DIR)
+calibration/
+walkTest/*.MOV
+walkTest/normalized/*.avi
+**/*.MOV
+**/*.mov
+**/*.MP4
+**/*.mp4
+**/*.AVI
+**/*.avi
+**/*.mkv
+__pycache__/
+*.pyc

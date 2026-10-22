@@ -20,6 +20,6 @@ if [[ -z "$files" ]]; then
   exit 1
 fi
 
-mkdir -p "$here/../manifests"
-printf '%s\n' "$files" | xargs shasum -a 256 > "$here/../manifests/SHA256SUMS"
-echo "wrote $here/../manifests/SHA256SUMS"
+mkdir -p "$here/manifests"
+printf '%s\n' "$files" | xargs shasum -a 256 > "$here/manifests/SHA256SUMS"
+echo "wrote $here/manifests/SHA256SUMS"
